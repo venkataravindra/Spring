@@ -1,7 +1,6 @@
 package com.example.beandiscovery.model;
 
 import org.springframework.stereotype.Component;
-
 @Component
 public class Teacher implements Period{
 

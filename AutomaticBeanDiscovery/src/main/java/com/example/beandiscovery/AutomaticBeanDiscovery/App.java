@@ -22,14 +22,36 @@ public class App
        ApplicationContext context = new ClassPathXmlApplicationContext("com/example/beandiscovery/beans/beans.xml");
          
         StudentDao studentDao = (StudentDao) context.getBean("studentDao");
-        List<Student> students= studentDao.getStudents();
+              
+        
         try {
+        	List<Student> students= studentDao.getStudents();
 			for(Student student:students)
 			{
 				System.out.println(student);
 			}
-			
-        }
+			  
+			System.out.println("*************Call by Id*****************************");
+			Student student1 = studentDao.getStudent(1);
+			System.out.println("getting by id " +student1);
+			System.out.println("************* end of Call by Id*****************************");
+        	Student student3 = new Student();
+        	student3.setId(4);
+        	student3.setName("suresh");
+        	student3.setEmail("suresh@gmail.com");
+        	student3.setAge(26);
+        	student3.setText("suresh lives in guntur");
+        	 int x = studentDao.createStudent(student3);
+        	 if(x>0)
+        	 {
+        		 System.out.println("student creation successfull");
+        	 }
+        	 else
+        	 {
+        		 System.out.println("try again");
+        	 }
+
+		}
         catch(CannotGetJdbcConnectionException e)
         {
         	System.out.println("cannot get database connection");
